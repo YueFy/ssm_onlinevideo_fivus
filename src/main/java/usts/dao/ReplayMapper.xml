@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ReplayMapper" >
+  <resultMap id="BaseResultMap" type="pojo.Replay" >
+    <constructor >
+      <idArg column="replay_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="context" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    replay_index, context, user_index
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.ReplayExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from replay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from replay
+    where replay_index = #{replayIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from replay
+    where replay_index = #{replayIndex,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.ReplayExample" >
+    delete from replay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.Replay" >
+    insert into replay (replay_index, context, user_index
+      )
+    values (#{replayIndex,jdbcType=INTEGER}, #{context,jdbcType=VARCHAR}, #{userIndex,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.Replay" >
+    insert into replay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replayIndex != null" >
+        replay_index,
+      </if>
+      <if test="context != null" >
+        context,
+      </if>
+      <if test="userIndex != null" >
+        user_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replayIndex != null" >
+        #{replayIndex,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="userIndex != null" >
+        #{userIndex,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.ReplayExample" resultType="java.lang.Integer" >
+    select count(*) from replay
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update replay
+    <set >
+      <if test="record.replayIndex != null" >
+        replay_index = #{record.replayIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.context != null" >
+        context = #{record.context,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIndex != null" >
+        user_index = #{record.userIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update replay
+    set replay_index = #{record.replayIndex,jdbcType=INTEGER},
+      context = #{record.context,jdbcType=VARCHAR},
+      user_index = #{record.userIndex,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.Replay" >
+    update replay
+    <set >
+      <if test="context != null" >
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="userIndex != null" >
+        user_index = #{userIndex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where replay_index = #{replayIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.Replay" >
+    update replay
+    set context = #{context,jdbcType=VARCHAR},
+      user_index = #{userIndex,jdbcType=INTEGER}
+    where replay_index = #{replayIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

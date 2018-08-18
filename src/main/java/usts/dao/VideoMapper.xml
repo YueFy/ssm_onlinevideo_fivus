@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.VideoMapper" >
+  <resultMap id="BaseResultMap" type="pojo.Video" >
+    <constructor >
+      <idArg column="video_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="video_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="video_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="video_language" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="critic_review" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="audience_review" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lasting_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="show_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="actor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="director" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="showtable_index" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reviewtable_index" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="video_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="imag_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    video_index, video_name, video_type, video_language, critic_review, audience_review, 
+    introduction, lasting_time, show_time, actor, director, showtable_index, reviewtable_index, 
+    video_url, imag_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.VideoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where video_index = #{videoIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where video_index = #{videoIndex,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pojo.VideoExample" >
+    delete from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pojo.Video" >
+    insert into video (video_index, video_name, video_type, 
+      video_language, critic_review, audience_review, 
+      introduction, lasting_time, show_time, 
+      actor, director, showtable_index, 
+      reviewtable_index, video_url, imag_url
+      )
+    values (#{videoIndex,jdbcType=INTEGER}, #{videoName,jdbcType=VARCHAR}, #{videoType,jdbcType=VARCHAR}, 
+      #{videoLanguage,jdbcType=VARCHAR}, #{criticReview,jdbcType=DOUBLE}, #{audienceReview,jdbcType=DOUBLE}, 
+      #{introduction,jdbcType=VARCHAR}, #{lastingTime,jdbcType=INTEGER}, #{showTime,jdbcType=TIMESTAMP}, 
+      #{actor,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{showtableIndex,jdbcType=VARCHAR}, 
+      #{reviewtableIndex,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, #{imagUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pojo.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videoIndex != null" >
+        video_index,
+      </if>
+      <if test="videoName != null" >
+        video_name,
+      </if>
+      <if test="videoType != null" >
+        video_type,
+      </if>
+      <if test="videoLanguage != null" >
+        video_language,
+      </if>
+      <if test="criticReview != null" >
+        critic_review,
+      </if>
+      <if test="audienceReview != null" >
+        audience_review,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="lastingTime != null" >
+        lasting_time,
+      </if>
+      <if test="showTime != null" >
+        show_time,
+      </if>
+      <if test="actor != null" >
+        actor,
+      </if>
+      <if test="director != null" >
+        director,
+      </if>
+      <if test="showtableIndex != null" >
+        showtable_index,
+      </if>
+      <if test="reviewtableIndex != null" >
+        reviewtable_index,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="imagUrl != null" >
+        imag_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videoIndex != null" >
+        #{videoIndex,jdbcType=INTEGER},
+      </if>
+      <if test="videoName != null" >
+        #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoType != null" >
+        #{videoType,jdbcType=VARCHAR},
+      </if>
+      <if test="videoLanguage != null" >
+        #{videoLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="criticReview != null" >
+        #{criticReview,jdbcType=DOUBLE},
+      </if>
+      <if test="audienceReview != null" >
+        #{audienceReview,jdbcType=DOUBLE},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="lastingTime != null" >
+        #{lastingTime,jdbcType=INTEGER},
+      </if>
+      <if test="showTime != null" >
+        #{showTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actor != null" >
+        #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="showtableIndex != null" >
+        #{showtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtableIndex != null" >
+        #{reviewtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imagUrl != null" >
+        #{imagUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pojo.VideoExample" resultType="java.lang.Integer" >
+    select count(*) from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update video
+    <set >
+      <if test="record.videoIndex != null" >
+        video_index = #{record.videoIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoName != null" >
+        video_name = #{record.videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoType != null" >
+        video_type = #{record.videoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoLanguage != null" >
+        video_language = #{record.videoLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.criticReview != null" >
+        critic_review = #{record.criticReview,jdbcType=DOUBLE},
+      </if>
+      <if test="record.audienceReview != null" >
+        audience_review = #{record.audienceReview,jdbcType=DOUBLE},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastingTime != null" >
+        lasting_time = #{record.lastingTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.showTime != null" >
+        show_time = #{record.showTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.actor != null" >
+        actor = #{record.actor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.director != null" >
+        director = #{record.director,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showtableIndex != null" >
+        showtable_index = #{record.showtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewtableIndex != null" >
+        reviewtable_index = #{record.reviewtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoUrl != null" >
+        video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imagUrl != null" >
+        imag_url = #{record.imagUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update video
+    set video_index = #{record.videoIndex,jdbcType=INTEGER},
+      video_name = #{record.videoName,jdbcType=VARCHAR},
+      video_type = #{record.videoType,jdbcType=VARCHAR},
+      video_language = #{record.videoLanguage,jdbcType=VARCHAR},
+      critic_review = #{record.criticReview,jdbcType=DOUBLE},
+      audience_review = #{record.audienceReview,jdbcType=DOUBLE},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      lasting_time = #{record.lastingTime,jdbcType=INTEGER},
+      show_time = #{record.showTime,jdbcType=TIMESTAMP},
+      actor = #{record.actor,jdbcType=VARCHAR},
+      director = #{record.director,jdbcType=VARCHAR},
+      showtable_index = #{record.showtableIndex,jdbcType=VARCHAR},
+      reviewtable_index = #{record.reviewtableIndex,jdbcType=VARCHAR},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      imag_url = #{record.imagUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pojo.Video" >
+    update video
+    <set >
+      <if test="videoName != null" >
+        video_name = #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoType != null" >
+        video_type = #{videoType,jdbcType=VARCHAR},
+      </if>
+      <if test="videoLanguage != null" >
+        video_language = #{videoLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="criticReview != null" >
+        critic_review = #{criticReview,jdbcType=DOUBLE},
+      </if>
+      <if test="audienceReview != null" >
+        audience_review = #{audienceReview,jdbcType=DOUBLE},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="lastingTime != null" >
+        lasting_time = #{lastingTime,jdbcType=INTEGER},
+      </if>
+      <if test="showTime != null" >
+        show_time = #{showTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actor != null" >
+        actor = #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="showtableIndex != null" >
+        showtable_index = #{showtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtableIndex != null" >
+        reviewtable_index = #{reviewtableIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imagUrl != null" >
+        imag_url = #{imagUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where video_index = #{videoIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pojo.Video" >
+    update video
+    set video_name = #{videoName,jdbcType=VARCHAR},
+      video_type = #{videoType,jdbcType=VARCHAR},
+      video_language = #{videoLanguage,jdbcType=VARCHAR},
+      critic_review = #{criticReview,jdbcType=DOUBLE},
+      audience_review = #{audienceReview,jdbcType=DOUBLE},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      lasting_time = #{lastingTime,jdbcType=INTEGER},
+      show_time = #{showTime,jdbcType=TIMESTAMP},
+      actor = #{actor,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      showtable_index = #{showtableIndex,jdbcType=VARCHAR},
+      reviewtable_index = #{reviewtableIndex,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      imag_url = #{imagUrl,jdbcType=VARCHAR}
+    where video_index = #{videoIndex,jdbcType=INTEGER}
+  </update>
+</mapper>
