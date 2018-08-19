@@ -1,9 +1,9 @@
-package dao;
+package usts.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import pojo.Replay;
-import pojo.ReplayExample;
+import usts.pojo.Replay;
+import usts.pojo.ReplayExample;
 
 public interface ReplayMapper {
     int countByExample(ReplayExample example);

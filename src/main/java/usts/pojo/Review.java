@@ -1,4 +1,4 @@
-package pojo;
+package usts.pojo;
 
 public class Review {
     private Integer reviewIndex;

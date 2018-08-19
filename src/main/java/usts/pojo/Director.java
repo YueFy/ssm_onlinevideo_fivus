@@ -1,4 +1,4 @@
-package pojo;
+package usts.pojo;
 
 public class Director {
     private Integer directorIndex;

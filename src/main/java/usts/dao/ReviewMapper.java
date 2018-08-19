@@ -1,9 +1,9 @@
-package dao;
+package usts.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import pojo.Review;
-import pojo.ReviewExample;
+import usts.pojo.Review;
+import usts.pojo.ReviewExample;
 
 public interface ReviewMapper {
     int countByExample(ReviewExample example);

@@ -1,9 +1,9 @@
-package dao;
+package usts.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import pojo.Actor;
-import pojo.ActorExample;
+import usts.pojo.Actor;
+import usts.pojo.ActorExample;
 
 public interface ActorMapper {
     int countByExample(ActorExample example);

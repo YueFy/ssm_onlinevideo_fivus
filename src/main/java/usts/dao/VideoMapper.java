@@ -1,9 +1,9 @@
-package dao;
+package usts.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import pojo.Video;
-import pojo.VideoExample;
+import usts.pojo.Video;
+import usts.pojo.VideoExample;
 
 public interface VideoMapper {
     int countByExample(VideoExample example);

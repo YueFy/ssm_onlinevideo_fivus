@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="usts.dao.ReviewLevelMapper" >
+  <resultMap id="BaseResultMap" type="usts.pojo.ReviewLevel" >
+    <constructor >
+      <idArg column="reviewlevel_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="video_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="review_level" jdbcType="DOUBLE" javaType="java.lang.Double" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    reviewlevel_index, user_index, video_index, review_level
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="usts.pojo.ReviewLevelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from review_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from review_level
+    where reviewlevel_index = #{reviewlevelIndex,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from review_level
+    where reviewlevel_index = #{reviewlevelIndex,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="usts.pojo.ReviewLevelExample" >
+    delete from review_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="usts.pojo.ReviewLevel" >
+    insert into review_level (reviewlevel_index, user_index, video_index, 
+      review_level)
+    values (#{reviewlevelIndex,jdbcType=INTEGER}, #{userIndex,jdbcType=INTEGER}, #{videoIndex,jdbcType=INTEGER}, 
+      #{reviewLevel,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="usts.pojo.ReviewLevel" >
+    insert into review_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reviewlevelIndex != null" >
+        reviewlevel_index,
+      </if>
+      <if test="userIndex != null" >
+        user_index,
+      </if>
+      <if test="videoIndex != null" >
+        video_index,
+      </if>
+      <if test="reviewLevel != null" >
+        review_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reviewlevelIndex != null" >
+        #{reviewlevelIndex,jdbcType=INTEGER},
+      </if>
+      <if test="userIndex != null" >
+        #{userIndex,jdbcType=INTEGER},
+      </if>
+      <if test="videoIndex != null" >
+        #{videoIndex,jdbcType=INTEGER},
+      </if>
+      <if test="reviewLevel != null" >
+        #{reviewLevel,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="usts.pojo.ReviewLevelExample" resultType="java.lang.Integer" >
+    select count(*) from review_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update review_level
+    <set >
+      <if test="record.reviewlevelIndex != null" >
+        reviewlevel_index = #{record.reviewlevelIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.userIndex != null" >
+        user_index = #{record.userIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoIndex != null" >
+        video_index = #{record.videoIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewLevel != null" >
+        review_level = #{record.reviewLevel,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update review_level
+    set reviewlevel_index = #{record.reviewlevelIndex,jdbcType=INTEGER},
+      user_index = #{record.userIndex,jdbcType=INTEGER},
+      video_index = #{record.videoIndex,jdbcType=INTEGER},
+      review_level = #{record.reviewLevel,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="usts.pojo.ReviewLevel" >
+    update review_level
+    <set >
+      <if test="userIndex != null" >
+        user_index = #{userIndex,jdbcType=INTEGER},
+      </if>
+      <if test="videoIndex != null" >
+        video_index = #{videoIndex,jdbcType=INTEGER},
+      </if>
+      <if test="reviewLevel != null" >
+        review_level = #{reviewLevel,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where reviewlevel_index = #{reviewlevelIndex,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="usts.pojo.ReviewLevel" >
+    update review_level
+    set user_index = #{userIndex,jdbcType=INTEGER},
+      video_index = #{videoIndex,jdbcType=INTEGER},
+      review_level = #{reviewLevel,jdbcType=DOUBLE}
+    where reviewlevel_index = #{reviewlevelIndex,jdbcType=INTEGER}
+  </update>
+</mapper>

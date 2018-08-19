@@ -1,4 +1,4 @@
-package pojo;
+package usts.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -246,6 +246,7 @@ public class ActorExample {
 
         public Criteria andSexEqualTo(String value) {
             addCriterion("sex =", value, "sex");
+            System.out.println(value);
             return (Criteria) this;
         }
 

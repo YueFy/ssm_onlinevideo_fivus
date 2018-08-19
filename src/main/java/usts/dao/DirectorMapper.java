@@ -1,9 +1,9 @@
-package dao;
+package usts.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import pojo.Director;
-import pojo.DirectorExample;
+import usts.pojo.Director;
+import usts.pojo.DirectorExample;
 
 public interface DirectorMapper {
     int countByExample(DirectorExample example);

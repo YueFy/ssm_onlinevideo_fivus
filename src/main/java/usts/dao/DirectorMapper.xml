@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.DirectorMapper" >
-  <resultMap id="BaseResultMap" type="pojo.Director" >
+<mapper namespace="usts.dao.DirectorMapper" >
+  <resultMap id="BaseResultMap" type="usts.pojo.Director" >
     <constructor >
       <idArg column="director_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     director_index, name, introduction
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.DirectorExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="usts.pojo.DirectorExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,19 +94,19 @@
     delete from director
     where director_index = #{directorIndex,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="pojo.DirectorExample" >
+  <delete id="deleteByExample" parameterType="usts.pojo.DirectorExample" >
     delete from director
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pojo.Director" >
+  <insert id="insert" parameterType="usts.pojo.Director" >
     insert into director (director_index, name, introduction
       )
     values (#{directorIndex,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="pojo.Director" >
+  <insert id="insertSelective" parameterType="usts.pojo.Director" >
     insert into director
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="directorIndex != null" >
@@ -131,7 +131,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="pojo.DirectorExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="usts.pojo.DirectorExample" resultType="java.lang.Integer" >
     select count(*) from director
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -163,7 +163,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.Director" >
+  <update id="updateByPrimaryKeySelective" parameterType="usts.pojo.Director" >
     update director
     <set >
       <if test="name != null" >
@@ -175,7 +175,7 @@
     </set>
     where director_index = #{directorIndex,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.Director" >
+  <update id="updateByPrimaryKey" parameterType="usts.pojo.Director" >
     update director
     set name = #{name,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=VARCHAR}

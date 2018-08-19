@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.ReplayMapper" >
-  <resultMap id="BaseResultMap" type="pojo.Replay" >
+<mapper namespace="usts.dao.ReplayMapper" >
+  <resultMap id="BaseResultMap" type="usts.pojo.Replay" >
     <constructor >
       <idArg column="replay_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="context" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     replay_index, context, user_index
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.ReplayExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="usts.pojo.ReplayExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,19 +94,19 @@
     delete from replay
     where replay_index = #{replayIndex,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="pojo.ReplayExample" >
+  <delete id="deleteByExample" parameterType="usts.pojo.ReplayExample" >
     delete from replay
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pojo.Replay" >
+  <insert id="insert" parameterType="usts.pojo.Replay" >
     insert into replay (replay_index, context, user_index
       )
     values (#{replayIndex,jdbcType=INTEGER}, #{context,jdbcType=VARCHAR}, #{userIndex,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="pojo.Replay" >
+  <insert id="insertSelective" parameterType="usts.pojo.Replay" >
     insert into replay
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="replayIndex != null" >
@@ -131,7 +131,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="pojo.ReplayExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="usts.pojo.ReplayExample" resultType="java.lang.Integer" >
     select count(*) from replay
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -163,7 +163,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.Replay" >
+  <update id="updateByPrimaryKeySelective" parameterType="usts.pojo.Replay" >
     update replay
     <set >
       <if test="context != null" >
@@ -175,7 +175,7 @@
     </set>
     where replay_index = #{replayIndex,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.Replay" >
+  <update id="updateByPrimaryKey" parameterType="usts.pojo.Replay" >
     update replay
     set context = #{context,jdbcType=VARCHAR},
       user_index = #{userIndex,jdbcType=INTEGER}

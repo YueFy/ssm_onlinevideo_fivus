@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.ReviewMapper" >
-  <resultMap id="BaseResultMap" type="pojo.Review" >
+<mapper namespace="usts.dao.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="usts.pojo.Review" >
     <constructor >
       <idArg column="review_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     review_index, content, video_index, replay
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="pojo.ReviewExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="usts.pojo.ReviewExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,19 +95,19 @@
     delete from review
     where review_index = #{reviewIndex,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="pojo.ReviewExample" >
+  <delete id="deleteByExample" parameterType="usts.pojo.ReviewExample" >
     delete from review
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pojo.Review" >
+  <insert id="insert" parameterType="usts.pojo.Review" >
     insert into review (review_index, content, video_index, 
       replay)
     values (#{reviewIndex,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{videoIndex,jdbcType=INTEGER}, 
       #{replay,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="pojo.Review" >
+  <insert id="insertSelective" parameterType="usts.pojo.Review" >
     insert into review
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="reviewIndex != null" >
@@ -138,7 +138,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="pojo.ReviewExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="usts.pojo.ReviewExample" resultType="java.lang.Integer" >
     select count(*) from review
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -174,7 +174,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.Review" >
+  <update id="updateByPrimaryKeySelective" parameterType="usts.pojo.Review" >
     update review
     <set >
       <if test="content != null" >
@@ -189,7 +189,7 @@
     </set>
     where review_index = #{reviewIndex,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.Review" >
+  <update id="updateByPrimaryKey" parameterType="usts.pojo.Review" >
     update review
     set content = #{content,jdbcType=VARCHAR},
       video_index = #{videoIndex,jdbcType=INTEGER},
