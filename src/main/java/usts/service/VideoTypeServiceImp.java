@@ -14,7 +14,7 @@ public class VideoTypeServiceImp implements VideoTypeService {
     VideoTypeMapper videoTypeMapper;
 
     @Override
-    public List<VideoType> findVideoTypeBySomeType(List<Integer> index) {
+    public List<VideoType> findVideoBySomeType(List<Integer> index) {
         VideoTypeExample videoTypeExample = new VideoTypeExample();
         VideoTypeExample.Criteria criteria = videoTypeExample.createCriteria();
 
@@ -22,5 +22,14 @@ public class VideoTypeServiceImp implements VideoTypeService {
         List<VideoType> videoTypesListBySomeIndex = videoTypeMapper.selectByExample(videoTypeExample);
         return videoTypesListBySomeIndex;
 
+    }
+//根据视频类型查找类型Index
+    @Override
+    public List<VideoType> findVideoByType(String videoType) {
+        VideoTypeExample videoTypeExample = new VideoTypeExample();
+        VideoTypeExample.Criteria criteria = videoTypeExample.createCriteria();
+        criteria.andTypeEqualTo(videoType);
+        List<VideoType> videoTypesListByType = videoTypeMapper.selectByExample(videoTypeExample);
+        return videoTypesListByType;
     }
 }

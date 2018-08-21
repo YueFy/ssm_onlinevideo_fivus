@@ -6,6 +6,7 @@ import usts.dao.VideoMapper;
 import usts.pojo.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,20 +47,37 @@ public class VideoLanguageServiceImp implements VideoLanguageService{
 
         VideoExample.Criteria criteria = videoExample.createCriteria();
 
-        criteria.andVideoLanguageLike(videoLanguageIndex+"");
+        criteria.andVideoLanguageLike("%"+videoLanguageIndex+"%");
         List<Video> videoList = videoMapper.selectByExample(videoExample);
 
         return videoList;
     }
 
     @Override
+
+// 一次查找多个语言(根据Index查找languageType)查找电影
     public List<VideoLanguage> findVideoLanguageBySomeIndex(List<Integer> index) {
         VideoLanguageExample videoLanguageExample = new  VideoLanguageExample ();
         VideoLanguageExample .Criteria criteria = videoLanguageExample.createCriteria();
         System.out.println(index);
         criteria.andVideolanguageIndexIn(index);
         List<VideoLanguage> videoLanguageListBySomeIndex = videoLanguageMapper.selectByExample(videoLanguageExample);
-
         return videoLanguageListBySomeIndex;
     }
+    public List<VideoLanguage> findVideoLanguageByIndex(List<Integer> indexs){
+        List<VideoLanguage> languages = new ArrayList<>();
+        String languageString = " ";
+        VideoLanguageExample videoLanguageExample = new  VideoLanguageExample ();
+        VideoLanguageExample .Criteria criteria = videoLanguageExample.createCriteria();
+        System.out.println(indexs);
+        for(Integer integer :indexs) {
+           criteria.andVideolanguageIndexEqualTo(integer);
+           List<VideoLanguage>  language = videoLanguageMapper.selectByExample(videoLanguageExample);
+           languageString += language.get(0).getLanguage()+" ";
+
+        }
+
+        return null;
+    }
+
 }

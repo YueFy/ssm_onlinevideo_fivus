@@ -8,54 +8,43 @@ import usts.service.*;
 import usts.utils.Split;
 
 import javax.annotation.Resource;
-import javax.swing.plaf.synth.SynthScrollBarUI;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("videoLanguage")
-public class VideoLanguageController {
+@RequestMapping("VideoType")
+public class VideoTypeController {
 
     @Resource
-    VideoLanguageService videoLanguageService;
+    VideoTypeService videoTypeService;
     @Resource
     VideoService videoService;
     @Resource
-    ActorService actorService;
+    VideoLanguageService videoLanguageService;
     @Resource
-    VideoTypeService videoTypeService;
+    ActorService actorService;
     @Resource
     DirectorService directorService;
 
 
 
-//    根据语言类型查找Video
-//    videoType":"1|2|3|4","videoLanguage":"1""actor":"1|2|3|4","director":"1"
-//    参数：语言类型
+//按类型查找
     @ResponseBody
-    @RequestMapping("findVideoByLanguage")
-    public List<Video> findVideoByLanguage(String language) {
-        //根据language查找Index
+    @RequestMapping("findVideoByType")
+    public List<Video> videoList(String SelectType){
 
-        int languageIndex = videoLanguageService.findLanguageIndex(language);
-
+        int videoTypeIndex = 0;
         List<Video> newVideo = new ArrayList<>();
-        List<Video> videoList = new ArrayList<>();
-        System.out.println("language:"+languageIndex);
-        if(languageIndex == 0){
-
-            //如果languageIndex = 0 那么language是其他，直接返回视频
-           videoList = videoService.findOtherVideos();
-        }else{
-
-            // 根据index查找List<Video>
-           videoList = videoLanguageService.findVideoByLanguageIndex(languageIndex);
+       // 根据Type查找index
+        List<VideoType> VideoNeedType = videoTypeService.findVideoByType("喜剧");
+        for(VideoType type :VideoNeedType){
+            videoTypeIndex = type.getVideotypeNdex();
         }
+        System.out.println(videoTypeIndex);
+        //根据Index查找Video
+        List<Video> videoList = videoService.findVideoByType(videoTypeIndex);
 
-
-//循环替换indexString为nameString
-// 第一次查询数据库得到的List<video>
-//  得到完整的List<video>
+//   循环替换
         for(Video video : videoList){
             String directorString = "";
             String actorString = "";
@@ -110,4 +99,5 @@ public class VideoLanguageController {
 
         return newVideo;
     }
+
 }

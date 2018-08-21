@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Split {
+    //分割String为List<Integer>
     public static List<Integer> split(String split){
         String[] splitArray=split.split("\\|");
         List<Integer> indexs = new ArrayList<Integer>();
