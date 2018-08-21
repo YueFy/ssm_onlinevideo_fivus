@@ -8,4 +8,5 @@ public interface VideoTypeService {
     public List<VideoType> findVideoBySomeType(List<Integer> index);
     public List<VideoType> findVideoByType(String videoType);
 
+
 }

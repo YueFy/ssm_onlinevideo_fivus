@@ -7,4 +7,5 @@ public interface ActorService {
     public List<Actor> actorList();
     public List<Actor> getActorListBySex(String sex);
     public List<Actor> findActorBySomeIndex(List<Integer> index);
+
 }

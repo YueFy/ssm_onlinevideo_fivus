@@ -32,4 +32,5 @@ public class VideoTypeServiceImp implements VideoTypeService {
         List<VideoType> videoTypesListByType = videoTypeMapper.selectByExample(videoTypeExample);
         return videoTypesListByType;
     }
+
 }

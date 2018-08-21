@@ -44,6 +44,7 @@ public class VideoServiceImp implements VideoService {
         System.out.println("list:"+findImageByRandom);
         return findImageByRandom;
     }
+
 //查找评分4.0以上的视频
     @Override
     public List<Video> findVideoByReview() {

@@ -10,4 +10,5 @@ public interface VideoService {
     public List<Video> findVideoImageByRandom();
     public List<Video> findVideoByReview();
     public List<Video> findAllVideo();
+
 }

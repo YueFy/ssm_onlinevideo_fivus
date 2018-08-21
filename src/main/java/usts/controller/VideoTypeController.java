@@ -27,7 +27,6 @@ public class VideoTypeController {
     DirectorService directorService;
 
 
-
 //按类型查找
     @ResponseBody
     @RequestMapping("findVideoByType")

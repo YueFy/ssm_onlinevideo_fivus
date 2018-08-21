@@ -7,4 +7,5 @@ import java.util.List;
 public interface DirectorService {
     public List<Director> findAllDirector();
     public List<Director> findDirectorBySomeIndex(List<Integer> index);
+    
 }

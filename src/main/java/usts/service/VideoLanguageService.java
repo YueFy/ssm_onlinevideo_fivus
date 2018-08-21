@@ -10,4 +10,6 @@ public interface VideoLanguageService {
     public int findLanguageIndex(String language);
     public List<Video> findVideoByLanguageIndex(int videoLanguageIndex);
     public List<VideoLanguage> findVideoLanguageBySomeIndex(List<Integer> index);
+
+
 }

@@ -371,4 +371,11 @@
       imag_url = #{imagUrl,jdbcType=VARCHAR}
     where video_index = #{videoIndex,jdbcType=INTEGER}
   </update>
+  <select id="findImageByRandom" resultMap="findImage">
+    SELECT imag_url FROM video ORDER BY RAND() LIMIT 5
+  </select>
+  <resultMap id="findImage" type="usts.pojo.Video">
+    <id property="videoIndex" column="video_index"></id>
+    <result column="imag_url" property="imagUrl"></result>
+  </resultMap>
 </mapper>

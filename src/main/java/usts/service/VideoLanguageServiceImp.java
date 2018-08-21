@@ -64,6 +64,7 @@ public class VideoLanguageServiceImp implements VideoLanguageService{
         List<VideoLanguage> videoLanguageListBySomeIndex = videoLanguageMapper.selectByExample(videoLanguageExample);
         return videoLanguageListBySomeIndex;
     }
+
     public List<VideoLanguage> findVideoLanguageByIndex(List<Integer> indexs){
         List<VideoLanguage> languages = new ArrayList<>();
         String languageString = " ";
