@@ -1,6 +1,5 @@
 var mobileResult;
 function mobileVideoInit() {
-        alert("init")
 
         url = "videoController/initMobileVideo";
         data = {};
@@ -53,14 +52,18 @@ function mobileVideoInit() {
             $(language6).html(result.mobileVideo6.videoLanguage);
 
         // 设置videoUrl
+            var index = 1;
             for(var key in result){
-                var videoIndex ="videoIndex"+(i+1);
-                $(videoIndex).href("movie-select-show.html?videoName="+result[key].videoName
-                    + "&videoLanguage=" +result[key].videoLanguage+"&lastingName="
+
+                var videoIndex ="videoIndex"+index;
+
+                document.getElementById(videoIndex).href = "movie-select-show.html?videoName="+ encodeURI(encodeURI(result[key].videoName))
+                    + "&videoLanguage=" +encodeURI(encodeURI(result[key].videoLanguage))+"&lastingTime="
                     +result[key].lastingTime+"&showTime="+result[key].showTime
-                    + "&imagUrl="+result[key].imagUrl+"&videoUrl="+result[key].videoUrl);
+                    + "&imagUrl="+result[key].imagUrl+"&videoUrl="+result[key].videoUrl;
+                index++;
 
             }
-
+            var index = 1;
 
         }

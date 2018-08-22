@@ -70,23 +70,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="now-showing-list">
             <div class="col-md-4 movies-by-category movie-booking">
-                <img src="http://120.79.35.160/images/movie-show.jpg" alt="" />
+                <img id = "videoImage" src="http://120.79.35.160/images/movie-show.jpg" alt="我是图片" />
                 <div class="bahubali-details">
-                    <h4>上映日期：</h4>
-                    <p>数据库抓取</p>
+                    <h4>电影名</h4>
+                    <p><span id = "videoName">我是电影名</span></p>
+
                     <h4>影片时长：</h4>
-                    <p>数据库抓去</p>
-                    <h4>导演：</h4>
-                    <p>数据库抓取</p>
+                    <p><span id = "lastingTime">我是时长</span>分钟</p>
+
                     <h4>本片语言：</h4>
-                    <p>数据库抓取</p>
-                    <h4>本片类型：</h4>
-                    <p>数据库抓取</p>
-                    <h4>本片演员：</h4>
-                    <p>数据库抓取</p>
+                    <p><span id = "videoLanguage">我是语言</span></p>
+
+                    <h4>上映日期</h4>
+                    <p><span id = "showTime">上映时间</span></p>
                 </div>
             </div>
         </div>
+        <!--加载页面完成后立马加载Url信息-->
+        <script type="text/javascript">
+            <!---->
+            $(window).load(function () {
+
+                setVideo();
+                alert(videoName);
+            });
+            //
+            var getParam = function(name){
+                var search = document.location.search;
+                alert(search);
+                var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+                var matcher = pattern.exec(search);
+                var items = null;
+                if(null != matcher){
+                    try{
+                        items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                    }catch(e){
+                        try{
+                            items = decodeURIComponent(matcher[1]);
+                        }catch(e){
+                            items = matcher[1];
+                        }
+                    }
+                }
+                return items;
+                };
+            function setVideo(){
+                var videoName = getParam('videoName');
+                var videoLanguage = getParam('videoLanguage');
+                var lastingTime = getParam('lastingTime');
+                var showTime = getParam('showTime');
+                var imagUrl = getParam('imagUrl');
+                var videoUrl = getParam('videoUrl');
+
+                var elementImage = document.getElementById("videoImage");
+                elementImage.src = imagUrl
+
+                $("#videoName").html(videoName);
+                $("#videoLanguage").html(videoLanguage);
+                $("#lastingTime").html(lastingTime);
+                $("#showTime").html(showTime);
+            }
+
+        </script>
+
+
         <div class="col-md-8 movies-dates">
             <div class="movie-date-selection">
                 <ul>
