@@ -36,7 +36,8 @@ public class VideoController {
         // 首页口碑榜初始化
         List<Video> findVideoByReview = videoService.findVideoByReview();
         for(int i = 0;i < findVideoByReview.size(); i++) {
-            homeMap.put("videoReview"+(i+1),findVideoByReview.get(i).getVideoName());
+            homeMap.put("video"+(i+1),findVideoByReview.get(i));
+
         }
         return homeMap;
     }
@@ -63,11 +64,60 @@ public class VideoController {
             video.setVideoLanguage(videoLanguage);
             thisAllVideo.add(video);
         }
+//转为hashMap存储
         for(int i = 0;i < thisAllVideo.size(); i++) {
 
             mobileVideoMap.put("mobileVideo"+(i+1),thisAllVideo.get(i));
         }
         return mobileVideoMap;
     }
+//查询正在上映的电影
+    @RequestMapping("onShowVideo")
+    @ResponseBody
+    public HashMap onShowVideo(){
+        HashMap onShowVideo = new HashMap();
 
+        List<Video> videos = videoService.videoOnShow();
+        List<Video> thisAllVideo = new ArrayList<>();
+        //替换languageIndex为languageType
+        for(Video video : videos){
+            String videoLanguage = " ";
+            List<Integer> languageIndexs = Split.split(video.getVideoLanguage());
+            //根据Indexs查找language
+            List<VideoLanguage> languages = videoLanguageService.findVideoLanguageBySomeIndex(languageIndexs);
+            for (VideoLanguage language :languages){
+                videoLanguage += language.getLanguage()+"  ";
+            }
+            video.setVideoLanguage(videoLanguage);
+            thisAllVideo.add(video);
+        }
+        for (int i = 0 ; i < thisAllVideo. size();i++){
+            onShowVideo.put("onShowVideo"+(i+1),thisAllVideo.get(i));
+        }
+        return onShowVideo;
+    }
+//    查找即将上映的电影i
+    @RequestMapping("immediateShow")
+    @ResponseBody
+    public HashMap immediateShowVideo() {
+        HashMap immediateShowVideo = new HashMap();
+        List<Video> videos = videoService.videoImmediateShow();
+        List<Video> thisAllVideo = new ArrayList<>();
+        //替换languageIndex为languageType
+        for(Video video : videos){
+            String videoLanguage = " ";
+            List<Integer> languageIndexs = Split.split(video.getVideoLanguage());
+            //根据Indexs查找language
+            List<VideoLanguage> languages = videoLanguageService.findVideoLanguageBySomeIndex(languageIndexs);
+            for (VideoLanguage language :languages){
+                videoLanguage += language.getLanguage()+"  ";
+            }
+            video.setVideoLanguage(videoLanguage);
+            thisAllVideo.add(video);
+        }
+        for (int i = 0 ; i < thisAllVideo. size();i++){
+            immediateShowVideo.put("immediateVideo"+(i+1),thisAllVideo.get(i));
+        }
+        return immediateShowVideo;
+    }
 }
