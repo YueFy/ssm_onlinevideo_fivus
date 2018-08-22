@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html >
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>首页</title>
     <link href="http://120.79.35.160/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -9,6 +10,7 @@
     <!-- Custom Theme files -->
     <script src="http://120.79.35.160/js/jquery.min.js"></script>
     <script src="http://120.79.35.160/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mobileVideo.js"/>
     <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -60,18 +62,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!---- start-smoth-scrolling---->
 
+
+
+
 </head>
-<body>
+<body >
 <!-- header-section-starts -->
 <link href='http://120.79.35.160/css/popuo-box.css' rel='stylesheet' type='text/css' media='all'/>
 <script type="text/javascript" src="http://120.79.35.160/js/login.js"></script>
+
 <div class="container">
     <div class="main-content">
+        <!--我的js-->
+        <script type="text/javascript" src="js/index.js"/>
         <script type="text/javascript" src="http://120.79.35.160/js/head.js"></script>
 
         <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">企业网站模板</a></div>
         <!-- AddThis Smart Layers END -->
-
 
         <div class="main-banner">
             <div class="banner col-md-8">
@@ -79,34 +86,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="flexslider">
                         <ul class="slides">
                             <li>
-                                <img src="http://120.79.35.160/images/pic1.jpg" class="img-responsive" alt=""/>
+                                <img id="randomImage1" src="" class="img-responsive" alt="我是图片"/>
                             </li>
                             <li>
-                                <img src="http://120.79.35.160/images/pic2.jpg" class="img-responsive" alt=""/>
+                                <img id="randomImage2" src="" class="img-responsive" alt="我是图片"/>
                             </li>
                             <li>
-                                <img src="http://120.79.35.160/images/pic3.jpg" class="img-responsive" alt=""/>
+                                <img id="randomImage3" src="" class="img-responsive" alt="我是图片"/>
                             </li>
                             <li>
-                                <img src="http://120.79.35.160/images/pic4.jpg" class="img-responsive" alt=""/>
+                                <img id="randomImage4" src="" class="img-responsive" alt="我是图片"/>
                             </li>
                         </ul>
                     </div>
                 </section>
+
                 <!-- FlexSlider -->
+
                 <script defer src="http://120.79.35.160/js/jquery.flexslider.js"></script>
                 <link rel="stylesheet" href="http://120.79.35.160/css/flexslider.css" type="text/css" media="screen"/>
                 <script type="text/javascript">
                     $(function () {
+
                         SyntaxHighlighter.all();
                     });
                     $(window).load(function () {
-                        $('.flexslider').flexslider({
+                        homeInit()
+                        mobileVideoInit();
+                        onTheShow();
+                        immediateShow();
+                        // setGoodVideo();
+                        $(".flexslider").flexslider({
                             animation: "slide",
+                            slideshowSpeed: 5000,
+                            animationDuration: 10,
+                            maxItems: 6,
                             start: function (slider) {
                                 $('body').removeClass('loading');
+
                             }
-                        });
+                            // added: function(){
+                            //     mobileVideoInit();
+                            // }
+                            // after:function(slider) {	//加载完成后回调函数
+                            // 	console.log(slider)
+                            // }
+                            });
+                            // animation: "slide",
+
+                        mobileVideoInit();
+
                     });
                 </script>
             </div>
@@ -145,81 +174,92 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"></div>
         </div>
+
+
+<!--滚动的6张照片-->
         <div class="review-slider">
             <ul id="flexiselDemo1">
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r1.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>looked up one of the more Contrary to popular</h4></div>
+                    <a id = "videoIndex1" href="movie-select-show.html">
+                        <img id="mobileImage1" src="" alt=""/></a>
+                    <div class="slide-title"><h4><span id="title1">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date1"></span></h5>
+                        <h6>本片语言:<span id="language1"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r2.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>There are many 'variations' belief</h4></div>
+                    <a id = "videoIndex2" href="movie-select-show.html" onclick="pressClick(2)">
+                        <img id="mobileImage2" src="" alt=""/></a>
+                    <div class="slide-title"><h4><span id="title2">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date2"></span></h5>
+                        <h6>本片语言:<span id="language2"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r3.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>Finibus Bonorum et Malorum more 'Contrary'</h4></div>
+                    <a id = "videoIndex3" href="movie-select-show.html">
+                        <img id="mobileImage3" src="" alt="" onclick="pressClick(3)"/></a>
+                    <div class="slide-title"><h4><span id="title3">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date3"></span></h5>
+                        <h6>本片语言:<span id="language3"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r4.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>Lorem Ipsum is simply Bonorum</h4></div>
+                    <a id = "videoIndex4" href="movie-select-show.html">
+                        <img id="mobileImage4" src="" alt="" onclick="pressClick(4)"/></a>
+                    <div class="slide-title"><h4><span id="title4">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date4"></span></h5>
+                        <h6>本片语言:<span id="language4"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r5.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>Lorem Ipsum is simply Bonorum</h4></div>
+                    <a id = "videoIndex5" href="movie-select-show.html">
+                        <img id="mobileImage5" src="" alt="" onclick="pressClick(5)"/></a>
+                    <div class="slide-title"><h4><span id="title5">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date5"></span></h5>
+                        <h6>本片语言:<span id="language5"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="movies.html"><img src="http://120.79.35.160/images/r6.jpg" alt=""/></a>
-                    <div class="slide-title"><h4>Lorem Ipsum is simply Bonorum</h4></div>
+                    <a id = "videoIndex6" href="movie-select-show.html" onclick="pressClick()">
+                        <img id="mobileImage6" src="" alt="" onclick="pressClick(6)"/></a>
+                    <div class="slide-title"><h4><span id="title6">我是标题</span></h4></div>
                     <div class="date-city">
-                        <h5>上映日期</h5>
-                        <h6>本片语言</h6>
+                        <h5>上映日期:<span id="date6"></span></h5>
+                        <h6>本片语言:<span id="language6"></span></h6>
                         <div class="buy-tickets">
                             <a href="movie-select-show.html">在线观看</a>
                         </div>
                     </div>
                 </li>
             </ul>
+
             <script type="text/javascript">
                 $(window).load(function () {
 
                     $("#flexiselDemo1").flexisel({
-                        visibleItems: 5,
+                        visibleItems: 4,
                         animationSpeed: 1000,
+                        autoPlay: true,
                         autoPlay: true,
                         autoPlaySpeed: 3000,
                         pauseOnHover: false,
@@ -243,6 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </script>
             <script type="text/javascript" src="http://120.79.35.160/js/jquery.flexisel.js"></script>
         </div>
+
         <div class="footer-top-grid">
             <div class="list-of-movies col-md-8">
                 <div class="tabs">
@@ -256,12 +297,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="clearfix"></div>
                             </ul>
                             <div class="resp-tabs-container">
+                                <!--即将上映Start-->
                                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
                                     <ul class="tab_img">
                                         <li>
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"> <img
-                                                        src="http://120.79.35.160/images/pic-1.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "onShowVideo1" src="http://120.79.35.160/images/pic-1.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="info1"></div>
@@ -279,8 +321,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
                                         <li>
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"><img
-                                                        src="http://120.79.35.160/images/pic-2.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "onShowVideo2" src="http://120.79.35.160/images/pic-2.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="info1"></div>
@@ -298,8 +340,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
                                         <li>
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"><img
-                                                        src="http://120.79.35.160/images/pic-10.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "onShowVideo3" src="http://120.79.35.160/images/pic-10.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="mask">
@@ -318,12 +360,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="clearfix"></div>
                                     </ul>
                                 </div>
+                                <!--即将上映End-->
+
+                                <!--正在上映Start-->
                                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
                                     <ul class="tab_img">
                                         <li>
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"> <img
-                                                        src="http://120.79.35.160/images/pic-4.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "immediateShow1" src="http://120.79.35.160/images/pic-4.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="mask">
@@ -341,8 +386,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
                                         <li>
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"> <img
-                                                        src="http://120.79.35.160/images/pic-12.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "immediateShow2" src="http://120.79.35.160/images/pic-12.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="mask">
@@ -360,8 +405,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
                                         <li class="last">
                                             <div class="view view-first">
-                                                <a href="movie-select-show.html"><img
-                                                        src="http://120.79.35.160/images/pic-5.jpg"
+                                                <a href="movie-select-show.html">
+                                                    <img id = "immediateShow3" src="http://120.79.35.160/images/pic-5.jpg"
                                                         class="img-responsive"
                                                         alt=""/></a>
                                                 <div class="mask">
@@ -380,6 +425,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="clearfix"></div>
                                     </ul>
                                 </div>
+                                <!--正在上映End-->
+
                                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
                                     <ul class="tab_img">
                                         <li>
@@ -438,11 +485,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f4.jpg" alt=""/></a>
+                                    <a href="movies.html"><img id = "goodVideo1" src="http://120.79.35.160/images/f4.jpg" alt=""/></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">Lorem Ipsum used since</a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name1">名字</span></a>
+                                    <p>持续时间:<span id = "lastingTime1"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -452,11 +499,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f5.jpg" alt=""/></a>
+                                    <a href="movies.html"><img id = "goodVideo2" src="http://120.79.35.160/images/f5.jpg" alt=""/></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">looked up one of more</a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name2">名字</span></a>
+                                    <p>持续时间:<span id = "lastingTime2"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -466,11 +513,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f6.jpg" alt=""/></a>
+                                    <a href="movies.html"><img id = "goodVideo3" src="http://120.79.35.160/images/f6.jpg" alt=""/></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">The Live Lorem Ipsum </a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name3">名字</span></a>
+                                    <p>持续时间:<span id = "lastingTime3"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -480,11 +527,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f1.jpg" alt=""></a>
+                                    <a href="movies.html"><img id = "goodVideo4" src="http://120.79.35.160/images/f1.jpg" alt=""></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">The standard chunk</a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name4">名字</span></a>
+                                    <p>持续时间:<span id = "lastingTime4"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -494,11 +541,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f2.jpg" alt=""></a>
+                                    <a href="movies.html"><img id = "goodVideo5" src="http://120.79.35.160/images/f2.jpg" alt=""></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">There are many 'variations'</a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name5">名字</span></a>
+                                    <p>持续时间:<span id = "lastingTime5"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -508,11 +555,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <div class="f-movie">
                                 <div class="f-movie-img">
-                                    <a href="movies.html"><img src="http://120.79.35.160/images/f3.jpg" alt=""></a>
+                                    <a href="movies.html"><img id = "goodVideo6" src="http://120.79.35.160/images/f3.jpg" alt=""></a>
                                 </div>
                                 <div class="f-movie-name">
-                                    <a href="movies.html">The Live Tribute Show</a>
-                                    <p>本片语言</p>
+                                    <a href="movies.html"><span id = "name6">名字</span> </a>
+                                    <p>持续时间:<span id = "lastingTime6"></span></p>
                                 </div>
                                 <div class="f-buy-tickets">
                                     <a href="movie-select-show.html">在线观看</a>
@@ -529,52 +576,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>77%</li>
-                        <li><a href="movie-single.html">数据库抓取电影名称 (3D) (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName1">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>80%</li>
-                        <li><a href="movie-single.html">数据库抓取电影名称 (3D Hindi) (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName2">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>69%</li>
-                        <li><a href="movie-single.html">Dil Dhadakne Do (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName3">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>65%</li>
-                        <li><a href="movie-single.html">数据库抓取电影名称 (U)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName4">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>83%</li>
-                        <li><a href="movie-single.html">Premam (U)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName5">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>87%</li>
-                        <li><a href="movie-single.html">Tanu Weds Manu Returns (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName6">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>71%</li>
-                        <li><a href="movie-single.html">Romeo Juliet (U)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName7">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>81%</li>
-                        <li><a href="movie-single.html">数据库抓取电影名称 (IMAX 3D) (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName8">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>80%</li>
-                        <li><a href="movie-single.html">数据库抓取电影名称 (2D Hindi) (U/A)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName9">我是电影名</span></a></li>
                     </ul>
                     <ul class="mov_list">
                         <li><i class="fa fa-star"></i></li>
                         <li>89%</li>
-                        <li><a href="movie-single.html">Kaaka Muttai (U)</a></li>
+                        <li><a href="movie-single.html"><span id="goodVideoName10">我是电影名</span></a></li>
                     </ul>
                 </div>
             </div>
