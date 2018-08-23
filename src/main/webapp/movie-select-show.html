@@ -92,12 +92,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $(window).load(function () {
 
                 setVideo();
-                alert(videoName);
             });
             //
             var getParam = function(name){
                 var search = document.location.search;
-                alert(search);
                 var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
                 var matcher = pattern.exec(search);
                 var items = null;
@@ -122,13 +120,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 var imagUrl = getParam('imagUrl');
                 var videoUrl = getParam('videoUrl');
 
-                var elementImage = document.getElementById("videoImage");
-                elementImage.src = imagUrl
+               document.getElementById("videoImage").src = imagUrl
+                document.getElementById("goVideoPage").href = "movie-single.html?"
+                    +"videoUrl="+videoUrl+"&videoName="+videoName
+                    +"&lastingTime="+lastingTime +"&showTime="+showTime+"&videoLanguage="
+                    +videoLanguage;
 
                 $("#videoName").html(videoName);
                 $("#videoLanguage").html(videoLanguage);
                 $("#lastingTime").html(lastingTime);
                 $("#showTime").html(showTime);
+
             }
 
         </script>
@@ -141,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="pic-a-movie.html"><i class="fa fa-map-marker"></i>fivus</a>
                     </li>
                     <li class="time">
-                        <a href="movie-payment.html">在线观看</a>
+                        <a id = "goVideoPage" href="movie-single.html">在线观看</a>
                     </li>
                 </ul>
             </div>

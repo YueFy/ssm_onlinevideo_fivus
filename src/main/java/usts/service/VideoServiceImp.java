@@ -62,8 +62,8 @@ public class VideoServiceImp implements VideoService {
     @Override
     public List<Video> findAllVideo() {
 
-        VideoExample videoExample = new VideoExample();
-        List<Video> videoList = videoMapper.selectByExample(videoExample);
+
+        List<Video> videoList = videoMapper.findAllByRandom();
         return videoList;
     }
 
@@ -72,13 +72,9 @@ public class VideoServiceImp implements VideoService {
         VideoExample videoExample = new VideoExample();
         VideoExample.Criteria criteria =  videoExample.createCriteria();
         //        当前时间
-        System.out.println("isOk");
         Date localDate = new Date();
-        System.out.println("local:"+localDate);
-
 //        以后时间
         Date afterDate = DateUtil.getNextDay(localDate,-15);
-        System.out.println("after:"+afterDate);
         criteria.andShowTimeBetween(afterDate,localDate);
         List<Video> videoList = videoMapper.selectByExample(videoExample);
         return videoList;

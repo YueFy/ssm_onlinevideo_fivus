@@ -15,55 +15,54 @@ function mobileVideoInit() {
 
         }
         function  setMobileVideo(result) {
-            var element1 = document.getElementById('mobileImage1');
-            element1.src =result.mobileVideo1.imagUrl
-            $(title1).html(result.mobileVideo1.videoName);
-            $(date1).html(result.mobileVideo1.showTime);
-            $(language1).html(result.mobileVideo1.videoLanguage);
-
-            var element2 = document.getElementById('mobileImage2');
-            element2.src =result.mobileVideo2.imagUrl
-            $(title2).html(result.mobileVideo2.videoName);
-            $(date2).html(result.mobileVideo2.showTime);
-            $(language2).html(result.mobileVideo2.videoLanguage);
-
-            var element3 = document.getElementById('mobileImage3');
-            element3.src =result.mobileVideo3.imagUrl
-            $(title3).html(result.mobileVideo3.videoName);
-            $(date3).html(result.mobileVideo3.showTime);
-            $(language3).html(result.mobileVideo3.videoLanguage);
-
-            var element4 = document.getElementById('mobileImage4');
-            element4.src =result.mobileVideo4.imagUrl
-            $(title4).html(result.mobileVideo4.videoName);
-            $(date4).html(result.mobileVideo4.showTime);
-            $(language4).html(result.mobileVideo4.videoLanguage);
-
-            var element5 = document.getElementById('mobileImage5');
-            element5.src =result.mobileVideo5.imagUrl
-            $(title5).html(result.mobileVideo5.videoName);
-            $(date5).html(result.mobileVideo5.showTime);
-            $(language5).html(result.mobileVideo5.videoLanguage);
-
-            var element6 = document.getElementById('mobileImage6');
-            element6.src =result.mobileVideo6.imagUrl
-            $(title6).html(result.mobileVideo6.videoName);
-            $(date6).html(result.mobileVideo6.showTime);
-            $(language6).html(result.mobileVideo6.videoLanguage);
 
         // 设置videoUrl
-            var index = 1;
-            for(var key in result){
+        //    设置指针
+            var index = 0;
 
-                var videoIndex ="videoIndex"+index;
+            for(var key in result) {
+                var videoHref = "movie-select-show.html?videoName=" + encodeURI(encodeURI(result[key].videoName))
+                    + "&videoLanguage=" + encodeURI(encodeURI(result[key].videoLanguage)) + "&lastingTime="
+                    + result[key].lastingTime + "&showTime=" + result[key].showTime
+                    + "&imagUrl=" + result[key].imagUrl + "&videoUrl=" + result[key].videoUrl;
 
-                document.getElementById(videoIndex).href = "movie-select-show.html?videoName="+ encodeURI(encodeURI(result[key].videoName))
-                    + "&videoLanguage=" +encodeURI(encodeURI(result[key].videoLanguage))+"&lastingTime="
-                    +result[key].lastingTime+"&showTime="+result[key].showTime
-                    + "&imagUrl="+result[key].imagUrl+"&videoUrl="+result[key].videoUrl;
-                index++;
+                var value = "<a href=" + videoHref + "> "
+                    + "<img  src=" + result[key].imagUrl + " alt=\"我是图片\"/></a> "
+                    + "<div class=\"slide-title\"><h4>" + result[key].videoName + "</h4></div> "
+                    + "<div class=\"date-city\"> <h5>上映日期:" + result[key].showTime + "</h5>"
+                    + "<h6>本片语言:" + result[key].videoLanguage + "</h6> "
+                    + "<div class=\"buy-tickets\"> " +
+                    "<a href=" + videoHref + ">在线观看</a> </div>" +
+                    " </div>";
+
+
+                $("#flexiselDemo1").append("<li>" + value + "</li>");
+
 
             }
-            var index = 1;
 
+                index++;
+
+                // var videoIndex ="videoIndex"+index;
+                // // var title = 'title'+index;
+                // // var date = 'date'+index;
+                // // var language = 'language'+index;
+                // //图片
+                // var elementImage = document.getElementById('mobileImage'+index);
+                // elementImage.setAttribute("src",result[key].imagUrl);
+                //
+                // $(title+index).html(result[key].videoName);
+                // alert(result[key].videoName);
+                // $(date+index).html(result[key].showTime);
+                // $(language+index).html(result[key].videoLanguage);
+                // //传递链接
+                // .document.getElementById(videoIndex).href = "movie-select-show.html?videoName="+ encodeURI(encodeURI(result[key].videoName))
+                //     + "&videoLanguage=" +encodeURI(encodeURI(result[key].videoLanguage))+"&lastingTime="
+                //     +result[key].lastingTime+"&showTime="+result[key].showTime
+                //     + "&imagUrl="+result[key].imagUrl+"&videoUrl="+result[key].videoUrl;
+                // index++;
+
+
+            //指针归零
+            index = 0;
         }

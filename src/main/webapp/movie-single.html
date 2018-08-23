@@ -62,21 +62,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="m-single-article">
             <div class="article-center">
-                <h3>数据库抓取电影名称Trailer || Prabhas, Rana Daggubati, Anushka, Tamannaah || Bahubali Trailer <span> <i
-                        class="fa fa-heart"></i> 99%</span></h3>
-                <p><a class="m-green" href="#">动作片</a><a class="m-green" href="#">惊悚片</a><a class="m-orange"
-                                                                                            href="#">国语</a></p>
+                <h3>
+                    <span id = "videoName">我是视频名字</span></h3>
+                <p><a class="m-green" href="#">动作片</a><a class="m-green" href="#"><span id = "lastingTime">我是片长</span>分钟</a><a class="m-orange"
+                                                                                            href="#"><span id = "videoLanguage">我是语言</span></a></p>
                 <div class="clearfix"></div>
                 <div class="article-time-strip">
                     <div class="article-time-strip-left">
                     </div>
                     <div class="clearfix"></div>
                     <div class="article-img">
-                        <iframe src="https://v.youku.com/v_show/id_XMzc1MjY4Njc5Ng==.html?spm=a2h0k.11417342.soresults.dposter&s=c43cb670e2814a9280ea
-" frameborder="0" allowfullscreen></iframe>
+                        <iframe id = "goVideo" src=" " frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="review-info">
-                        <h6 class="span88">Baahubali</h6>
+                        <h6 class="span88"><span id ="videoNameBottom">我还是视频名字</span></h6>
                         <p class="ratingview">专家评分:</p>
                         <div class="rating">
                             <span>☆</span>
@@ -125,12 +124,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <p class="info"><strong>导演</strong>: &nbsp;&nbsp;&nbsp;&nbsp;S.S. Rajamouli.</p>
                         <p class="info"><strong>情节</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             V. Vijayendra Prasad.</p>
-                        <p class="info"><strong>时长</strong>:&nbsp;&nbsp;&nbsp; &nbsp; 2 hour 30 minutes.</p>
+                        <p class="info"><strong>时长</strong>:&nbsp;&nbsp;&nbsp; &nbsp;161分</p>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
+        <script type="text/javascript">
+            <!---->
+            $(window).load(function () {
+
+                showVideo();
+            });
+            //
+            var getParam = function(name){
+                var search = document.location.search;
+                var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+                var matcher = pattern.exec(search);
+                var items = null;
+                if(null != matcher){
+                    try{
+                        items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                    }catch(e){
+                        try{
+                            items = decodeURIComponent(matcher[1]);
+                        }catch(e){
+                            items = matcher[1];
+                        }
+                    }
+                }
+                return items;
+            };
+            function showVideo(){
+                var videoName = getParam('videoName');
+                var videoLanguage = getParam('videoLanguage');
+                var lastingTime = getParam('lastingTime');
+                var showTime = getParam('showTime');
+                alert("name:"+videoName);
+                alert("time:"+lastingTime);
+                var videoUrl = getParam('videoUrl');
+                // document.getElementById("videoImage").src = imagUrl
+                document.getElementById("goVideo").src = videoUrl;
+
+                $("#videoName").html(videoName);
+                $("#videoLanguage").html(videoLanguage);
+                $("#lastingTime").html(lastingTime);
+                $("#videoNameBottom").html(videoName);
+                // $("#showTime").html(showTime);
+
+            }
+
+        </script>
+
         <div class="reviews-tabs">
             <!-- Main component for a primary marketing message or call to action -->
             <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="myTab">

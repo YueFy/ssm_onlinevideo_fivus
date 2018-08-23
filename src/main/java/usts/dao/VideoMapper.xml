@@ -379,11 +379,18 @@
     <result column="imag_url" property="imagUrl"></result>
   </resultMap>
   <select id="findAllByRandom" resultMap="findAllVideo">
-   select * from video order by rand()
+   select * from video order by rand() limit 12
   </select>
   <resultMap id="findAllVideo" type="usts.pojo.Video">
     <id property="videoIndex" column="video_index"></id>
+    <result column="video_name" property="videoName"></result>
     <result column="imag_url" property="imagUrl"></result>
-    <result column=""
+    <result column="video_type" property="videoType"></result>
+    <result column="video_language" property="videoLanguage"></result>
+    <result column="critic_review" property="criticReview"></result>
+    <result column="audience_review" property="audienceReview"></result>
+    <result column="introduction" property="introduction"></result>
+    <result column="lasting_time" property="lastingTime"></result>
+    <result column="show_time" property="showTime"></result>
   </resultMap>
 </mapper>
