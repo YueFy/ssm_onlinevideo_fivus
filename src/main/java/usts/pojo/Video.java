@@ -1,5 +1,7 @@
 package usts.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Video {
@@ -18,7 +20,7 @@ public class Video {
     private String introduction;
 
     private Integer lastingTime;
-
+    @JsonFormat(pattern ="yyyy-MM-dd",timezone="GMT+8")
     private Date showTime;
 
     private String actor;

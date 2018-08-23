@@ -845,5 +845,12 @@ public class DateUtil{
         System.out.println("local"+localDate);
         return localDate;
     }
-
+//    时间加天数
+    public static Date getNextDay(Date date,int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, day);//+1今天的时间加一天
+        date = calendar.getTime();
+        return date;
+    }
 }
