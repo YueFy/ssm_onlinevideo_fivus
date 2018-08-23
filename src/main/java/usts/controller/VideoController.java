@@ -120,4 +120,16 @@ public class VideoController {
         }
         return immediateShowVideo;
     }
+    @RequestMapping("initMovie")
+    @ResponseBody
+    public HashMap initMovie(){
+        HashMap movieMap = new HashMap();
+
+        List<Video> movie = videoService.findAllVideo();
+
+        for (int i = 0 ; i < movie. size();i++){
+            movieMap.put("movie"+(i+1),movie.get(i));
+        }
+        return movieMap;
+    }
 }

@@ -28,4 +28,6 @@ public interface VideoMapper {
 
     int updateByPrimaryKey(Video record);
     List<Video> findImageByRandom();
+    List<Video> findAllByRandom();
+
 }
