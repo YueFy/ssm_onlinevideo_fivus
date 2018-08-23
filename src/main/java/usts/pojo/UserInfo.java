@@ -1,7 +1,11 @@
 package usts.pojo;
 
-public class UserInfo {
+import java.io.Serializable;
+
+public class UserInfo implements Serializable {
     private Integer userId;
+
+    private String fuId;
 
     private Integer status;
 
@@ -21,8 +25,12 @@ public class UserInfo {
 
     private String address;
 
-    public UserInfo(Integer userId, Integer status, String registerTime, String registerIp, Integer role, String loginTime, String loginIp, String mobile, String gender, String address) {
+    private String avatar;
+
+
+    public UserInfo(Integer userId, String fuId, Integer status, String registerTime, String registerIp, Integer role, String loginTime, String loginIp, String mobile, String gender, String address, String avatar) {
         this.userId = userId;
+        this.fuId = fuId;
         this.status = status;
         this.registerTime = registerTime;
         this.registerIp = registerIp;
@@ -32,10 +40,23 @@ public class UserInfo {
         this.mobile = mobile;
         this.gender = gender;
         this.address = address;
+        this.avatar = avatar;
     }
 
     public UserInfo() {
         super();
+        this.userId = 0;
+        this.fuId = null;
+        this.status = 0;
+        this.registerTime = null;
+        this.registerIp = null;
+        this.role = null;
+        this.loginTime = null;
+        this.loginIp = null;
+        this.mobile = null;
+        this.gender = null;
+        this.address = null;
+        this.avatar = null;
     }
 
     public Integer getUserId() {
@@ -44,6 +65,14 @@ public class UserInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getFuId() {
+        return fuId;
+    }
+
+    public void setFuId(String fuId) {
+        this.fuId = fuId == null ? null : fuId.trim();
     }
 
     public Integer getStatus() {
@@ -116,5 +145,31 @@ public class UserInfo {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "userId=" + userId +
+                ", fuId='" + fuId + '\'' +
+                ", status=" + status +
+                ", registerTime='" + registerTime + '\'' +
+                ", registerIp='" + registerIp + '\'' +
+                ", role=" + role +
+                ", loginTime='" + loginTime + '\'' +
+                ", loginIp='" + loginIp + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }

@@ -26,7 +26,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- start menu -->
     <link href="http://120.79.35.160/css/megamenu.css" rel="stylesheet" type="text/css" media="all"/>
     <script type="text/javascript" src="http://120.79.35.160/js/megamenu.js"></script>
+<script type="text/javascript" src="js/review.js"></script>
     <script>$(document).ready(function () {
+        reviewInit();
         $(".megamenu").megamenu();
     });</script>
     <script type="text/javascript" src="http://120.79.35.160/js/jquery.leanModal.min.js"></script>
@@ -179,8 +181,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="reviews-tabs">
             <!-- Main component for a primary marketing message or call to action -->
             <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="myTab">
-                <li class="test-class"><a href="#features">专家评论(1)</a></li>
-                <li><a class="deco-none" href="#source">用户评论(11)</a></li>
+                <li class="test-class"><a href="#features">专家评论(0)</a></li>
+                <li><a class="deco-none" href="#source">用户评论(7)</a></li>
             </ul>
 
             <div class="tab-content responsive hidden-xs hidden-sm">
@@ -203,13 +205,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="media response-info">
                             <div class="media-left response-text-left">
                                 <a href="#">
-                                    <img class="media-object" src="http://120.79.35.160/images/icon1.png" alt="">
+                                    <img id="review1" class="media-object" src="http://120.79.35.160/images/icon1.png" alt="">
                                 </a>
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent1"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -225,8 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent2"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -242,8 +242,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent3"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -259,8 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent4"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -276,8 +274,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent5"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -293,8 +290,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent6"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -310,8 +306,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5><a href="#">User姓</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <p>用户评论
-                                </p>
+                                <p><span id="reviewContent7"></span></p>
                                 <ul>
                                     <li>评论时间</li>
                                     <li><a href="single.html">Reply</a></li>
@@ -347,6 +342,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     })(jQuery);
 
 </script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         /*
@@ -362,6 +358,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     });
 </script>
+
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover"
                                                                          style="opacity: 1;"> </span></a>
 </body>

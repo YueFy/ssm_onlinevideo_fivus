@@ -48,6 +48,19 @@ public class VideoServiceImp implements VideoService {
         return findImageByRandom;
     }
 
+
+    //模糊查询
+
+    @Override
+    public List<Video> searchByName(String name) {
+        VideoExample videoExample = new VideoExample();
+        VideoExample.Criteria criteria =  videoExample.createCriteria();
+        criteria.andVideoNameLike(name);
+        List<Video> videoList = videoMapper.selectByExample(videoExample);
+
+        return videoList;
+    }
+
 //查找评分4.0以上的视频
     @Override
     public List<Video> findVideoByReview() {
