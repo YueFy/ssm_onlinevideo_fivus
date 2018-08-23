@@ -12,4 +12,5 @@ public interface VideoService {
     public List<Video> findAllVideo();
     public List<Video> videoOnShow();
     public List<Video> videoImmediateShow();
+    public List<Video> searchByName(String name);
 }

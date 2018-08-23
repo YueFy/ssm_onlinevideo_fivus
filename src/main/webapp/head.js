@@ -1,3 +1,28 @@
+
+var topResult;
+
+
+function search(){
+
+    url = "videoController/search";
+    data = {};
+    type = "json";
+
+    $.post(
+        url,
+        data,
+
+        function(result,status){
+            topResult =  result;
+
+        },
+        type);
+}
+function sea(){
+    window.location="localhost:8082/movie-select-show.html";
+}
+
+
 document.writeln("<div class='header'>")
 
 document.writeln("<div class='logo'>")
@@ -12,9 +37,9 @@ document.writeln("<form>")
 
 document.writeln("<i class='fa fa-search'></i>")
 
-document.writeln("<input type='text' value='在此处输入影片片名或主演名字' onfocus='this.value = '';'onblur='if (this.value == '') {this.value = '在此处输入影片片名或主演名字';}'/></form> ")
+ document.writeln("<input type='text' id='movieName' name='movieName' value='在此' onkeypress='search()' />" );
 
-document.writeln("</div> </div>")
+document.writeln("</form></div> </div>")
 
 document.writeln("<div class='clearfix'></div></div>")
 
@@ -201,3 +226,31 @@ document.writeln("</div><!-- end #navbar-collapse-1 -->")
 document.writeln("</nav><!-- end navbar navbar-default w3_megamenu -->")
 
 document.writeln("</div><!-- end container -->")
+
+
+
+ // $('#movieName').bind('keypress',function(event){
+ //
+ //
+ //     if(event.keyCode == 13)
+ //
+ //     {
+ //         window.location.href='localhost:8082/movie-select-show.html';
+ //     }
+ //
+ // });
+
+// function check(){
+//
+//     if(event.keyCode == 13)
+//
+//     {
+//
+//             window.location="localhost:8082/movie-select-show.html";
+//     }
+
+
+
+
+//}
+
