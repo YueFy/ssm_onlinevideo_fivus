@@ -3,6 +3,8 @@ package usts.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.web.servlet.view.RedirectView;
 import usts.pojo.Video;
 import usts.pojo.VideoLanguage;
 import usts.service.VideoLanguageService;
@@ -10,6 +12,7 @@ import usts.service.VideoService;
 import usts.utils.Split;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,4 +123,26 @@ public class VideoController {
         }
         return immediateShowVideo;
     }
+
+    @RequestMapping("search")
+    @ResponseBody
+    public HashMap search(HttpServletRequest request){
+        HashMap homeMap = new  HashMap();
+        String name = request.getParameter("text");
+
+        List<Video> findImageByRandom = videoService.searchByName(name);
+
+//        for(int i = 0;i < findImageByRandom.size(); i++) {
+//            homeMap.put("videoImageUrl"+(i+1),findImageByRandom.get(i));
+//        }
+       // view.setView(new RedirectView("movie-select-", false));
+        return homeMap;
+    }
+
+
 }
+
+
+
+
+
