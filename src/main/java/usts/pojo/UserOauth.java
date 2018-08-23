@@ -1,9 +1,13 @@
 package usts.pojo;
 
-public class UserOauth {
+import java.io.Serializable;
+
+public class UserOauth implements Serializable {
     private Integer oaId;
 
     private Integer userId;
+
+    private String fuId;
 
     private String identityType;
 
@@ -15,9 +19,10 @@ public class UserOauth {
 
     private String avatar;
 
-    public UserOauth(Integer oaId, Integer userId, String identityType, String identifier, String credential, String cerfiled, String avatar) {
+    public UserOauth(Integer oaId, Integer userId, String fuId, String identityType, String identifier, String credential, String cerfiled, String avatar) {
         this.oaId = oaId;
         this.userId = userId;
+        this.fuId = fuId;
         this.identityType = identityType;
         this.identifier = identifier;
         this.credential = credential;
@@ -43,6 +48,14 @@ public class UserOauth {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getFuId() {
+        return fuId;
+    }
+
+    public void setFuId(String fuId) {
+        this.fuId = fuId == null ? null : fuId.trim();
     }
 
     public String getIdentityType() {

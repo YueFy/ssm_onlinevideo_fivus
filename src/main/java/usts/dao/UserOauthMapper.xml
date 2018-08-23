@@ -5,6 +5,7 @@
     <constructor >
       <idArg column="oa_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fu_id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="identity_type" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="identifier" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="credential" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    oa_id, user_id, identity_type, identifier, credential, cerfiled, avatar
+    oa_id, user_id, fu_id, identity_type, identifier, credential, cerfiled, avatar
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="usts.pojo.UserOauthExample" >
     select
@@ -105,12 +106,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="usts.pojo.UserOauth" >
-    insert into user_oauth (oa_id, user_id, identity_type, 
-      identifier, credential, cerfiled, 
-      avatar)
-    values (#{oaId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{identityType,jdbcType=VARCHAR}, 
-      #{identifier,jdbcType=VARCHAR}, #{credential,jdbcType=VARCHAR}, #{cerfiled,jdbcType=VARCHAR}, 
-      #{avatar,jdbcType=VARCHAR})
+    insert into user_oauth (oa_id, user_id, fu_id, 
+      identity_type, identifier, credential, 
+      cerfiled, avatar)
+    values (#{oaId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{fuId,jdbcType=VARCHAR}, 
+      #{identityType,jdbcType=VARCHAR}, #{identifier,jdbcType=VARCHAR}, #{credential,jdbcType=VARCHAR}, 
+      #{cerfiled,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="usts.pojo.UserOauth" >
     insert into user_oauth
@@ -120,6 +121,9 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="fuId != null" >
+        fu_id,
       </if>
       <if test="identityType != null" >
         identity_type,
@@ -143,6 +147,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fuId != null" >
+        #{fuId,jdbcType=VARCHAR},
       </if>
       <if test="identityType != null" >
         #{identityType,jdbcType=VARCHAR},
@@ -176,6 +183,9 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.fuId != null" >
+        fu_id = #{record.fuId,jdbcType=VARCHAR},
+      </if>
       <if test="record.identityType != null" >
         identity_type = #{record.identityType,jdbcType=VARCHAR},
       </if>
@@ -200,6 +210,7 @@
     update user_oauth
     set oa_id = #{record.oaId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      fu_id = #{record.fuId,jdbcType=VARCHAR},
       identity_type = #{record.identityType,jdbcType=VARCHAR},
       identifier = #{record.identifier,jdbcType=VARCHAR},
       credential = #{record.credential,jdbcType=VARCHAR},
@@ -214,6 +225,9 @@
     <set >
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fuId != null" >
+        fu_id = #{fuId,jdbcType=VARCHAR},
       </if>
       <if test="identityType != null" >
         identity_type = #{identityType,jdbcType=VARCHAR},
@@ -236,6 +250,7 @@
   <update id="updateByPrimaryKey" parameterType="usts.pojo.UserOauth" >
     update user_oauth
     set user_id = #{userId,jdbcType=INTEGER},
+      fu_id = #{fuId,jdbcType=VARCHAR},
       identity_type = #{identityType,jdbcType=VARCHAR},
       identifier = #{identifier,jdbcType=VARCHAR},
       credential = #{credential,jdbcType=VARCHAR},

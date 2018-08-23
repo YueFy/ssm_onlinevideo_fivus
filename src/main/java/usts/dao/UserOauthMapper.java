@@ -1,9 +1,10 @@
 package usts.dao;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import usts.pojo.UserOauth;
 import usts.pojo.UserOauthExample;
+
+import java.util.List;
 
 public interface UserOauthMapper {
     int countByExample(UserOauthExample example);

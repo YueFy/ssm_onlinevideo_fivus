@@ -8,7 +8,21 @@
     <!--controller层的spring注解扫描-->
     <context:component-scan base-package="usts.controller"/>
     <!--controller层springmvc的注解扫描-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!--application/json和text/plain无法解决返回字符串的乱码  -->
+                        <!-- <value>application/json;charset=UTF-8</value>
+                         <value>text/plain;charset=UTF-8</value>
+                         -->
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!--静态资源过滤-->
     <mvc:default-servlet-handler/>
     <!--内部资源视图解析器  将你返回的网页 的前缀和后缀补充 完整-->
@@ -20,6 +34,7 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"/>
         <property name="maxUploadSize" value="1000000"/>
+        <property name="uploadTempDir" value="portrait"/>
     </bean>
 
 </beans>
